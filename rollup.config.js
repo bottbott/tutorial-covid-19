@@ -8,6 +8,9 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
+import css from 'rollup-plugin-css-only';
+
+const fs = require('fs');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -34,6 +37,13 @@ export default {
 				compilerOptions: {
 					dev,
 					hydratable: true
+				}
+			}),
+			// css({ output: 'static/extra.css' })
+			css({ 
+				output: function(styles, styleNodes) {
+					console.log('Writing bundled CSS...')
+					fs.writeFileSync('static/extra.css', styles)
 				}
 			}),
 			url({
