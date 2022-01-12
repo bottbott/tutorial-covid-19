@@ -14,6 +14,11 @@ async function provinceStats(province) {
     return parsers.provinceStats(province, response.data)
 }
 
+async function historicCanadaStats() {
+    const response = await axios.get('https://api.opencovid.ca/timeseries?loc=canada&after=2022-1-1')
+    return parsers.historicCanadaStats(response.data)
+}
+
 export default {
-    caStats, provinceStats
+    caStats, provinceStats, historicCanadaStats
 }

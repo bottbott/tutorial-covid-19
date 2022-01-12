@@ -1,13 +1,16 @@
 <script context="module">
     import requests from '../data/requests.js'
     export async function preload() {
-        let caStats
+        // let caStats
+        // let historicCanadaStats
         try {
-            caStats = await requests.caStats();
-            return { caStats }
+            const caStats = await requests.caStats();
+            const historicCanadaStats = await requests.historicCanadaStats();
+            return { caStats, historicCanadaStats }
         } catch(e) {
             console.log("There was an error in calling the API.")
-            this.error(500, e)
+            console.error(e)
+            // this.error(500, e)
             return;
         }
     }
@@ -19,8 +22,10 @@
     import TableContainer from '../components/TableContainer.svelte'
 
     export let caStats;
+    export let historicCanadaStats;
     console.log(caStats, 'caStats')
-
+    console.log(historicCanadaStats, 'Calling historic stats in index.svelte')
+    
 </script>
 
 <style>
