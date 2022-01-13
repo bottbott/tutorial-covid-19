@@ -44,7 +44,7 @@ function parseHistoric(historicData) {
     processedHistoricData = mergeById(processedHistoricData, mortalityData, "date_active", "date_death_report")
     processedHistoricData = mergeById(processedHistoricData, recoveredData, "date_active", "date_recovered")
     processedHistoricData = mergeById(processedHistoricData, testingData, "date_active", "date_testing")
-    console.log(processedHistoricData, "historic data")
+    // console.log(processedHistoricData, "historic data")
     let combinedChartData =[
         {
             label: 'Cases',
@@ -78,7 +78,7 @@ function parseHistoric(historicData) {
 
         return prev;
     }, [])
-    console.log(combinedChartData, 'combined chart data')
+    // console.log(combinedChartData, 'combined chart data')
     return combinedChartData;
 }
 

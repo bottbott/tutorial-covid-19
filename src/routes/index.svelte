@@ -23,8 +23,8 @@
 
     export let caStats;
     export let historicCanadaStats;
-    console.log(caStats, 'caStats')
-    console.log(historicCanadaStats, 'Calling historic stats in index.svelte')
+    // console.log(caStats, 'caStats')
+    // console.log(historicCanadaStats, 'Calling historic stats in index.svelte')
     
 </script>
 
@@ -43,5 +43,5 @@
 </div>
 
 <CovidStat caStats={caStats}/>
-<CovidChart />
+<CovidChart historicData={historicCanadaStats} title="Canada Covid-19"/>
 <TableContainer />
