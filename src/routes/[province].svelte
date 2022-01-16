@@ -1,25 +1,30 @@
 <script context="module">
-    import provinceNames from '../data/provinces.js'
+    import provinceHelper from '../data/provinces.js'
     import requests from '../data/requests.js'
 
     export async function preload(page) {
         let stats
+        let historic
         console.log('Loading province page...')
         let province = page.params['province'] // switch back to const later on. just needed to make it a var to do some troubleshooting. 
-        if (provinceNames.find(s => s.name.toLowerCase() === province.toLowerCase() || s.abbreviation.toLowerCase() === province.toLowerCase()) === undefined) {
+        if (provinceHelper.provinceNames.find(s => s.name.toLowerCase() === province.toLowerCase() || s.abbreviation.toLowerCase() === province.toLowerCase()) === undefined) {
             console.log("before the error")
             this.error(404, 'Province Not Found')
             return
         }
         try {
             const stats = await requests.provinceStats(province);
+            const historic = await requests.historicProvince(province);
+            province = provinceHelper.getProvinceKeys(province).name
             console.log('got the stats...')
-            return { province, stats }
+            return { province, stats, historic }
         }
          catch(e) {
             console.error(e)
             this.error(500, "There was an error in calling the API. Please try again later. Error: ", e)
-         }   
+         }
+
+         
     }
 </script>
 <script>
@@ -29,8 +34,9 @@
 
     export let province;
     export let stats;
+    export let historic;
 
-    console.log(stats, 'stats')
+    // console.log(stats, 'stats')
 
 </script>
 
@@ -45,4 +51,4 @@
 </div>
 
 <CovidStat caStats={stats}/>
-<CovidChart />
+<CovidChart historicData={historic} title="Covid 19 - {province}"/>

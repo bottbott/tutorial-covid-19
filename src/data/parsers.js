@@ -1,5 +1,6 @@
 import format from './format'
 import moment from 'moment'
+import provinceHelper from '../data/provinces.js'
 
 // should really be in a different file as a utility function and imported in.
 function mergeById(a1, a2, a1key, a2key) {
@@ -16,13 +17,18 @@ function canadaStats(data) {
 
 function provinceStats(province, data) {
     console.log('get the specific province: ', province)
-    const provinceRawData = data.summary.find(d => d.province.toLowerCase() === province.toLowerCase());
+    const provinceKeyForAPI = provinceHelper.getProvinceKeys(province).apiPreference
+    const provinceRawData = data.summary.find(d => d.province.toLowerCase() === provinceKeyForAPI.toLowerCase());
     console.log(provinceRawData, 'province raw data')
     return parseStats(provinceRawData);
 }
 
 function historicCanadaStats(historicData) {
     return parseHistoric(historicData);
+}
+
+function historicProvince(province, historicData) {
+    return parseHistoric(historicData)
 }
 
 function parseHistoric(historicData) {
@@ -72,7 +78,7 @@ function parseHistoric(historicData) {
             color: 'rgb(255, 99, 132)'
         }
     ].reduce((prev, next) => {
-        if (processedHistoricData.filter(d => d[next.key] !== null).length > 4) {
+        if (processedHistoricData.filter(d => d[next.key]).length > 4) {
             prev.push(parseChart(processedHistoricData, next.key, next.label, next.color))
         }
 
@@ -122,6 +128,8 @@ function parseStats(rawStats) {
     }
 }
 
+
+
 export default {
-    canadaStats, provinceStats, historicCanadaStats
+    canadaStats, provinceStats, historicCanadaStats, historicProvince
 }

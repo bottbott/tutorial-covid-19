@@ -1,40 +1,66 @@
-export default [{
+// The API stores province values in a mix of abbreviations and full length. Need a way to be able to work with either, so return an object with both options
+function getProvinceKeys(province) {
+    console.log(province, 'getProvinceKeys province value')
+    const provinceKeys = provinceNames.filter(x => x.name.toLowerCase() === province.toLowerCase() || x.abbreviation.toLowerCase() === province.toLowerCase())
+    console.log(provinceKeys, 'provinceKeysOutput')
+    return provinceKeys[0]
+}
+
+const provinceNames = [{
     name: 'Alberta',
-    abbreviation: 'AB'
+    abbreviation: 'AB',
+    apiPreference: 'Alberta'
 }, {
     name: 'British Columbia',
-    abbreviation: 'BC'
+    abbreviation: 'BC',
+    apiPreference: 'BC'
 }, {
     name: 'Manitoba',
-    abbreviation: 'MB'
+    abbreviation: 'MB',
+    apiPreference: 'Manitoba'
 }, {
     name: 'New Brunswick',
-    abbreviation: 'NB'
+    abbreviation: 'NB',
+    apiPreference: 'New Brunswick'
 }, {
     name: 'Newfoundland and Labrador',
-    abbreviation: 'NL'
+    abbreviation: 'NL',
+    apiPreference: 'NL'
 }, {
     name: 'Northwest Territories',
-    abbreviation: 'NT'
+    abbreviation: 'NT',
+    apiPreference: 'NWT'
 }, {
     name: 'Nova Scotia',
-    abbreviation: 'NS'
+    abbreviation: 'NS',
+    apiPreference: 'Nova Scotia'
 }, {
     name: 'Nunavut',
-    abbreviation: 'NU'
+    abbreviation: 'NU',
+    apiPreference: 'Nunavut'
 }, {
     name: 'Ontario',
-    abbreviation: 'ON'
+    abbreviation: 'ON',
+    apiPreference: 'Ontario'
 }, {
     name: 'Prince Edward Island',
-    abbreviation: 'PE'
+    abbreviation: 'PE',
+    apiPreference: 'PEI'
 }, {
     name: 'Quebec',
-    abbreviation: 'QC'
+    abbreviation: 'QC',
+    apiPreference: 'Quebec'
 }, {
     name: 'Saskatchewan',
-    abbreviation: 'SK'
+    abbreviation: 'SK',
+    apiPreference: 'Saskatchewan'
 }, {
     name: 'Yukon Territory',
-    abbreviation: 'YT'
+    abbreviation: 'YT',
+    apiPreference: 'Yukon'
 }]
+
+
+export default {
+    provinceNames, getProvinceKeys
+}
