@@ -1,8 +1,8 @@
 // The API stores province values in a mix of abbreviations and full length. Need a way to be able to work with either, so return an object with both options
 function getProvinceKeys(province) {
-    console.log(province, 'getProvinceKeys province value')
+    // console.log(province, 'getProvinceKeys province value')
     const provinceKeys = provinceNames.filter(x => x.name.toLowerCase() === province.toLowerCase() || x.abbreviation.toLowerCase() === province.toLowerCase())
-    console.log(provinceKeys, 'provinceKeysOutput')
+    // console.log(provinceKeys, 'provinceKeysOutput')
     return provinceKeys[0]
 }
 
@@ -28,7 +28,7 @@ const provinceNames = [{
     apiPreference: 'NL'
 }, {
     name: 'Northwest Territories',
-    abbreviation: 'NT',
+    abbreviation: 'NWT',
     apiPreference: 'NWT'
 }, {
     name: 'Nova Scotia',
@@ -44,7 +44,7 @@ const provinceNames = [{
     apiPreference: 'Ontario'
 }, {
     name: 'Prince Edward Island',
-    abbreviation: 'PE',
+    abbreviation: 'PEI',
     apiPreference: 'PEI'
 }, {
     name: 'Quebec',
@@ -55,9 +55,14 @@ const provinceNames = [{
     abbreviation: 'SK',
     apiPreference: 'Saskatchewan'
 }, {
-    name: 'Yukon Territory',
+    name: 'Yukon',
     abbreviation: 'YT',
     apiPreference: 'Yukon'
+},
+{
+    name: 'Repatriated',
+    abbreviation: 'Repatriated',
+    apiPreference: 'Repatriated'
 }]
 
 

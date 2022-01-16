@@ -23,6 +23,20 @@ function provinceStats(province, data) {
     return parseStats(provinceRawData);
 }
 
+function provinceTable(data) {
+    const provinceDataList = data.summary.map(data => {
+        const fullProvinceName = provinceHelper.getProvinceKeys(data.province).name
+        return {
+            cases: format.number(data.active_cases),
+            deaths: format.number(data.deaths),
+            tested: format.number(data.testing),
+            province: data.province,
+            fullProvinceName: fullProvinceName
+        }
+    })
+    return provinceDataList
+}
+
 function historicCanadaStats(historicData) {
     return parseHistoric(historicData);
 }
@@ -131,5 +145,9 @@ function parseStats(rawStats) {
 
 
 export default {
-    canadaStats, provinceStats, historicCanadaStats, historicProvince
+    canadaStats, 
+    provinceStats, 
+    historicCanadaStats, 
+    historicProvince, 
+    provinceTable
 }

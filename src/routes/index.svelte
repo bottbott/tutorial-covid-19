@@ -6,7 +6,8 @@
         try {
             const caStats = await requests.caStats();
             const historicCanadaStats = await requests.historicCanadaStats();
-            return { caStats, historicCanadaStats }
+            const provincesTable = await requests.provincesData();
+            return { caStats, historicCanadaStats, provincesTable }
         } catch(e) {
             console.log("There was an error in calling the API.")
             console.error(e)
@@ -23,6 +24,8 @@
 
     export let caStats;
     export let historicCanadaStats;
+    export let provincesTable;
+    console.log(provincesTable)
     // console.log(caStats, 'caStats')
     // console.log(historicCanadaStats, 'Calling historic stats in index.svelte')
     
@@ -44,4 +47,4 @@
 
 <CovidStat caStats={caStats}/>
 <CovidChart historicData={historicCanadaStats} title="Canada Covid-19"/>
-<TableContainer />
+<TableContainer data={provincesTable}/>

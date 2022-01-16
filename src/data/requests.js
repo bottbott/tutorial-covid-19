@@ -20,6 +20,11 @@ async function historicCanadaStats() {
     return parsers.historicCanadaStats(response.data)
 }
 
+async function provincesData() {
+    const response = await axios.get('https://api.opencovid.ca/summary');
+    return parsers.provinceTable(response.data);
+}
+
 async function historicProvince(province) {
     console.log('hello')
     const provinceKey = provinceHelper.getProvinceKeys(province).abbreviation
@@ -35,5 +40,9 @@ async function historicProvince(province) {
 // }
 
 export default {
-    caStats, provinceStats, historicCanadaStats, historicProvince
+    caStats, 
+    provinceStats, 
+    historicCanadaStats, 
+    historicProvince, 
+    provincesData
 }
