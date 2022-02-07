@@ -17,7 +17,7 @@
         <table class="table is-bordered is-striped">
             <thead>
                 <tr>
-                    <th>States</th>
+                    <th>Provinces</th>
                     <th>Cases</th>
                     <th>Deaths</th>
                     <th>Total Tested</th>

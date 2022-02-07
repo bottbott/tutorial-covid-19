@@ -8,15 +8,17 @@
         console.log('Loading province page...')
         let province = page.params['province'] // switch back to const later on. just needed to make it a var to do some troubleshooting. 
         if (provinceHelper.provinceNames.find(s => s.name.toLowerCase() === province.toLowerCase() || s.abbreviation.toLowerCase() === province.toLowerCase()) === undefined) {
-            console.log("before the error")
             this.error(404, 'Province Not Found')
             return
         }
         try {
+            console.log(province, "province before reassignment")
+            province = provinceHelper.getProvinceKeys(province).apiPreference
+            console.log(province, "province after reassignment")
             const stats = await requests.provinceStats(province);
             const historic = await requests.historicProvince(province);
-            province = provinceHelper.getProvinceKeys(province).name
             console.log('got the stats...')
+            console.log(stats, 'the stats')
             return { province, stats, historic }
         }
          catch(e) {

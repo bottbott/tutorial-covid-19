@@ -1,1 +1,35 @@
-<h1>Table Filter</h1>
+<script>
+    export let provinceName = ""
+    export let sortBy = "name"
+</script>
+
+<style>
+    input, .select, select {
+        width: 100%
+    }
+
+    .column {
+        padding-left: 0;
+    }
+
+</style>
+
+<div class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-6">
+                <input type="text" class="input" bind:value={provinceName} placeholder="Filter Provinces" />
+            </div>
+            <div class="column is-6">
+                <div class="select">
+                    <select bind:value={sortBy}>
+                        <option value="name">By Province</option>
+                        <option value="cases">Cases</option>
+                        <option value="deaths">Deaths</option>
+                        <option value="tested">Tested</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
